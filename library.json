@@ -9,5 +9,18 @@
             "added_on": "2026-04-22T06:33:23"
         }
     ],
-    "members": []
+    "members": [
+        {
+            "id": "M- HLUXK",
+            "name": "Vijay Prabhakar Nagane",
+            "email": "vijaynagane19@gmail.com",
+            "borrowed": []
+        },
+        {
+            "id": "M- MU4ZN",
+            "name": "Vishal Suresh Chavan",
+            "email": "vishuchavan445@gmail.com",
+            "borrowed": []
+        }
+    ]
 }

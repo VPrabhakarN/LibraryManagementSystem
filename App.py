@@ -23,7 +23,7 @@ class Library :
         with open(database, "r") as f :
             content = f.read().strip()
             if content :
-                data = json.load(content)        
+                data = json.loads(content)        
     else :
         with open(database, 'w') as f :
             json.dump(data, f, indent=4)
@@ -63,7 +63,41 @@ class Library :
         Library.data['books'].append(book)
         Library.save_data()
         
+    # Define function to list the books
+    def list_books(self) :
+        if not Library.data['books'] :
+            print(f"Sorry! No Books Found!")
+            return
+        for b in Library.data['books'] :
+            print(f"{b['id']:22} {b['title'][:24]:25} {b['author'][:19]:20} {b['copies']}/{b['available_copies']:>3}")
+        print() 
         
+    # Define function to add member
+    def add_member(self) :
+        name = input("Enter the Name : ")
+        email = input("Enter the Email : ")
+        
+        member = {
+            "id" : Library.gen_id("M"),
+            "name" : name,
+            "email" : email,
+            "borrowed" : []
+        }
+        
+        Library.data['members'].append(member)
+        Library.save_data()
+        print("Member Added Successfully!!!!")
+        
+        
+    # Define function to show members
+    def list_members(self) :
+        if not Library.data['members'] :
+            print(f"There are no member!!")
+            return
+        for m in Library.data['members'] :
+            print(f"{m['id']:12} {m['name'][:24]:25} {m['email'][:29]:30} {"This guys has currently : "} {m['borrowed']}")
+            print("-"*50) 
+               
    
         
 
@@ -91,6 +125,12 @@ choice = int(input("Enter the choice : "))
 # Using if-elif-else condition 
 if choice == 1 :
     book.add_book()
+elif choice == 2 :
+    book.list_books()
+elif choice == 3 :
+    book.add_member() 
+elif choice == 4 :
+    book.list_members()   
 else :
     print("Wrong Choice!! Please Try Again!!")
 
