@@ -1,0 +1,13 @@
+{
+    "books": [
+        {
+            "id": "B- RXNFE",
+            "title": "Game Of Thrones",
+            "author": "VijayPN",
+            "copies": 23,
+            "available_copies": 23,
+            "added_on": "2026-04-22T06:33:23"
+        }
+    ],
+    "members": []
+}
