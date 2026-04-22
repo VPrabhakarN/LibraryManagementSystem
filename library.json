@@ -5,7 +5,7 @@
             "title": "Game Of Thrones",
             "author": "VijayPN",
             "copies": 23,
-            "available_copies": 23,
+            "available_copies": 22,
             "added_on": "2026-04-22T06:33:23"
         }
     ],
@@ -14,7 +14,13 @@
             "id": "M- HLUXK",
             "name": "Vijay Prabhakar Nagane",
             "email": "vijaynagane19@gmail.com",
-            "borrowed": []
+            "borrowed": [
+                {
+                    "book_id": "B- RXNFE",
+                    "title": "Game Of Thrones",
+                    "borrow_on": "2026-04-22T13:07:16"
+                }
+            ]
         },
         {
             "id": "M- MU4ZN",

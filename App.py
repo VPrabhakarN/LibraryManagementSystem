@@ -37,7 +37,7 @@ class Library :
         
     # Defining function to generate unique id 
     def gen_id(Prefix="B") :
-        random_id = " "
+        random_id = ""
         for i in range(5) :
             random_id += random.choice(string.ascii_uppercase + string.digits)
             
@@ -97,10 +97,37 @@ class Library :
         for m in Library.data['members'] :
             print(f"{m['id']:12} {m['name'][:24]:25} {m['email'][:29]:30} {"This guys has currently : "} {m['borrowed']}")
             print("-"*50) 
-               
-   
+            
+    # Define function to borrow a book
+    def borrow(self) :
+        member_id = input("Enter your MemberID : ").strip()
+        members = [m for m in Library.data['members'] if m['id'] == member_id]
+        if not members :
+            print(f"{member_id}!! No such MemberID Found!!")
+            return
+        member = members[0]
         
-
+        book_id = input("Enter BookID : ").strip()
+        books = [b for b in Library.data['books'] if b['id'] == book_id]
+        if not books :
+            print("Sorry!! Not such book is available!!")
+            return
+        book = books[0]
+        if book['available_copies'] <= 0 :
+            print("Sorry, This Book is NOT Available!!!")
+            return
+        
+        borrow_entry =  {
+            "book_id" : book['id'],
+            "title" : book['title'],
+            "borrow_on" : datetime.now().strftime("%Y-%m-%dT%H:%M:%S")
+        }
+        
+        member['borrowed'].append(borrow_entry)
+        book['available_copies'] -= 1
+        Library.save_data()
+        print("Book Borrowed Successfully!!!")
+    
 
 # Displaying the options 
 print("="*50)
@@ -130,7 +157,10 @@ elif choice == 2 :
 elif choice == 3 :
     book.add_member() 
 elif choice == 4 :
-    book.list_members()   
+    book.list_members()  
+elif choice == 5 : 
+    book.borrow() 
+elif choice == 6 :
+    book.return_book()
 else :
     print("Wrong Choice!! Please Try Again!!")
-
