@@ -127,6 +127,37 @@ class Library :
         book['available_copies'] -= 1
         Library.save_data()
         print("Book Borrowed Successfully!!!")
+        
+    # Define function to return book
+    def return_book(self) :
+        member_id = input("Enter your MemberID : ").strip()
+        members = [m for m in Library.data['members'] if m['id'] == member_id]
+        
+        if not members :
+            print(f"No such MemberID in Existance!")
+            return
+        
+        member = members[0]
+        
+        if not member['borrowed'] :
+            print("No Borrowed Books")
+            return
+        print("Borrowed Books : ")
+        for i, b in enumerate(member['borrowed']) :
+            print(f"{i}. {b['title']} ({b['book_id']})")
+            
+        try :
+            choice = int(input("Enter your choice : "))
+            selected = member['borrowed'].pop(choice-1)
+        except Exception as err :
+            print(f"Error Occupied : {err}")
+            
+        books = [bk for bk in Library.data['books'] if bk['id'] == selected['book_id']]
+        
+        if books :
+            books[0]['available_copies'] += 1
+            
+        Library.save_data()
     
 
 # Displaying the options 
